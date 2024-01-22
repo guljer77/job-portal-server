@@ -33,7 +33,12 @@ async function run() {
 
     const jobsCollection = client.db("jobsDb").collection('jobs');
 
-
+    app.use((req, res, next) => {
+      res.setHeader('Access-Control-Allow-Origin', 'https://job-portal-8de2f.web.app');
+      // Add other necessary headers here
+    
+      next();
+    });
     //add jobs
     app.post('/add-jobs', async(req, res)=>{
       const body = req.body;
